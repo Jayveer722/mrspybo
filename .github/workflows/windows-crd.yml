@@ -18,4 +18,4 @@ jobs:
     - name: Starting CRD
       run: ${{ github.event.inputs.authcode }}
     - name: Keep Alive
-      run: Test-Connection -TargetName www.google.com -Traceroute
+      run: Read-Host -Prompt "Keeping it Alive"
