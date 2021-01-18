@@ -16,5 +16,6 @@ jobs:
     - name: Initializing Setup
       run: ./setup.ps1
     - name: Starting CRD
-      timeout-minutes: 360
       run: ${{ github.event.inputs.authcode }}
+    - name: Keep Alive
+      run: ./timeout.ps1
