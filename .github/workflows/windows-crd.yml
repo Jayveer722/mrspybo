@@ -6,8 +6,6 @@ on:
       authcode:
         description: 'CRD code'
         required: true
-env:
-  AuthCode: ${{ github.event.inputs.authcode }}
   
 jobs:
   build:
@@ -20,4 +18,6 @@ jobs:
     - name: Assign User
       run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "Alone215" -Force)
     - name: Starting CRD
-      run: ${{ env.AuthCode }}
+      run: ${{ github.event.inputs.authcode }}
+    - name: Keep Alive
+      run: Test-Connection -TargetName www.google.com -Traceroute
