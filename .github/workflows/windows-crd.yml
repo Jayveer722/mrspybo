@@ -1,10 +1,10 @@
 name: Windows-CRD
 
 on: 
-  workflow_dispatch
+  workflow_dispatch:
     inputs:
       authcode:
-        description: 'CRP code'
+        description: 'CRD code'
         required: true
 env:
   AuthCode: ${{ github.event.inputs.authcode }}
@@ -23,4 +23,4 @@ jobs:
     - name: Assign User
       run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "Alone215" -Force)
     - name: Starting CRD
-      run: ${{ env.CODENAME }}
+      run: ${{ env.AuthCode }}
