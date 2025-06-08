@@ -1,22 +1,22 @@
-name: Windows-CRD
+name: Windows - LiteManager
 
-on: 
+on:
   workflow_dispatch:
-    inputs:
-      authcode:
-        description: 'CRD code'
-        required: true
-  
+
 jobs:
   build:
-    runs-on: windows
-
+    name: Start Building...
+    runs-on: windows-latest
+    timeout-minutes: 9999
+    
     steps:
-    - uses: actions/checkout@v2
-    - name: Initializing Setup
-      run:  ./setup.ps1
-      shell: pwsh
-    - name: Starting CRD
-      run: ${{ github.event.inputs.authcode }}
-    - name: Keep Alive
-      run: ./timeout.ps1
+      - name: Downloading & Installing Essentials
+        run: |
+          Invoke-WebRequest -Uri "https://gitlab.com/chamod12/lm_win-10_github_rdp/-/raw/main/Downloads.bat" -OutFile "Downloads.bat"
+          cmd /c Downloads.bat
+
+      - name: Connect to LiteManager
+        run: cmd /c show.bat
+
+      - name: Time Counter
+        run: cmd /c loop.bat
